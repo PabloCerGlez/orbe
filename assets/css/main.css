@@ -1005,7 +1005,7 @@ section {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(14, 29, 52, 0.8);
+      background: rgba(15, 15, 15, 0.8);
     z-index: 9996;
   }
 }
