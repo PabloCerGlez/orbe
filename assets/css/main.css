@@ -2378,3 +2378,7 @@ section {
 .footer .credits a {
   color: #fff;
 }
+.reduced-margin .col-md-6 {
+  margin-bottom: 0.5rem; /* Puedes ajustar este valor según tu preferencia */
+}
+
