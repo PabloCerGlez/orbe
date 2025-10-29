@@ -7,33 +7,206 @@
 
   <title>Orbe - Terms and Conditions</title>
   <style>
-    .container-termn  {
-        line-height: 1.6;
+    .container-termn {
+        line-height: 1.8;
         margin: 0;
-        padding: 20px;
-        background-color: #fff;
-    }
-
-    .container-termn   .container {
-        max-width: 700px;
-        margin: auto;
+        padding: 60px 40px;
         background: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        min-height: 100vh;
     }
 
-    .container-termn   h3 {
-        margin-bottom: 10px;
+    .container-termn .content-wrapper {
+        max-width: 1000px;
+        margin: auto;
+        padding: 0;
     }
-    .container-termn    p {
-        margin-bottom: 15px;
+
+    .container-termn .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+        padding-bottom: 20px;
+        border-bottom: 3px solid #F39200;
     }
-    .container-termn    ul {
+
+    .container-termn .section-header h1 {
+        font-size: 42px;
+        font-weight: 800;
+        color: #F39200;
+        margin-bottom: 20px;
+        padding-bottom: 0;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .container-termn .section-header span {
+        position: absolute;
+        top: 46px;
+        color: rgba(52, 37, 14, 0.06);
+        left: 0;
+        right: 0;
+        z-index: 1;
+        font-weight: 700;
+        font-size: 56px;
+        text-transform: uppercase;
+        line-height: 0;
+    }
+
+    .container-termn .last-updated {
+        display: block;
+        color: #666;
+        font-size: 15px;
+        font-weight: 500;
+        margin-top: 30px;
+        margin-bottom: 0;
+    }
+
+    .container-termn .intro-text {
+        font-size: 17px;
+        color: #555;
+        text-align: center;
+        margin: 30px auto 50px;
+        font-style: italic;
+        max-width: 800px;
+    }
+
+    .container-termn h2 {
+        font-size: 32px;
+        font-weight: 800;
+        color: #0f0f0f;
+        margin: 50px 0 25px 0;
+        padding-bottom: 15px;
+        border-bottom: 4px solid #F39200;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        position: relative;
+    }
+
+    .container-termn h2:before {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 100px;
+        height: 4px;
+        background: #0f0f0f;
+    }
+
+    .container-termn h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #F39200;
+        margin: 30px 0 15px 0;
         padding-left: 20px;
+        border-left: 5px solid #F39200;
+        transition: all 0.3s ease;
+        position: relative;
     }
-    .container-termn  ul li {
-        margin-bottom: 10px;
+
+    .container-termn h3:hover {
+        padding-left: 30px;
+        background: rgba(243, 146, 0, 0.05);
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 0 10px 10px 0;
+    }
+
+    .container-termn p {
+        margin-bottom: 20px;
+        color: #555;
+        font-size: 16px;
+        line-height: 1.9;
+        text-align: justify;
+        letter-spacing: 0.3px;
+    }
+
+    .container-termn ul {
+        padding-left: 30px;
+        margin-bottom: 20px;
+    }
+
+    .container-termn ul li {
+        margin-bottom: 12px;
+        color: #555;
+        font-size: 16px;
+        line-height: 1.8;
+        position: relative;
+        padding-left: 10px;
+    }
+
+    .container-termn ul li:before {
+        content: "▸";
+        position: absolute;
+        left: -20px;
+        color: #F39200;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    /* Animación de entrada */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .container-termn .content-wrapper {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Scroll suave para secciones */
+    .container-termn h3 {
+        scroll-margin-top: 100px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .container-termn {
+            padding: 40px 20px;
+        }
+
+        .container-termn .section-header h1 {
+            font-size: 32px;
+        }
+
+        .container-termn h2 {
+            font-size: 26px;
+        }
+
+        .container-termn h3 {
+            font-size: 18px;
+        }
+
+        .container-termn p,
+        .container-termn ul li {
+            font-size: 15px;
+        }
+
+        .container-termn .intro-text {
+            font-size: 16px;
+        }
+    }
+
+    /* Highlight effect */
+    .container-termn h3::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 0;
+        height: 2px;
+        background: #F39200;
+        transition: width 0.4s ease;
+    }
+
+    .container-termn h3:hover::after {
+        width: 100%;
     }
 </style>
   <meta content="" name="description">
@@ -140,14 +313,16 @@
         </div>
       </nav>
     </div><!-- End Breadcrumbs -->
-    <div class="container container-termn">
-      <div class="section-header">
-          <h1>Terms and Conditions</h1>
-          <span>Terms and Conditions</span>
-      </div>
-      <span>Last updated: December 05, 2023</span>
+    <div class="container-termn">
+      <div class="content-wrapper">
+        <div class="section-header">
+            <h1>Terms and Conditions</h1>
+            <span>Terms and Conditions</span>
+        </div>
 
-      <p>Please read these terms and conditions carefully before using Our Service.</p>
+        <p class="last-updated">Last updated: <span id="lastUpdated"></span></p>
+
+        <p class="intro-text">Please read these terms and conditions carefully before using Our Service.</p>
 
       <h2>Supplier Terms and Conditions</h2>
       <h3>Responsible Supply and Product Compliance</h3>
@@ -215,7 +390,8 @@
    <p>Suplier shall certify that no conflict minerals (tin, tantalum, tungsten, or gold) have been sourced from restricted regions (democratic republic of congo or adjacent regions) as defined by the dodd-frank act wall street reform and consumers protect act, secrion 1502.</p>
       <h3>21. Q6: FOD (Foreign Object Damage) Prevention</h3>
       <p>FOD Suppliers are required to establish and implement, prevent, detect and remove foreign object damage or contamination to products during production, assembly, packaging and product delivery. Suppliers shall also flow down the requirements of FOD to their sub-tier.</p>
-  </div>
+      </div>
+    </div>
   </main><!-- End #main -->
 
   <footer id="footer" class="footer">
@@ -318,6 +494,35 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <!-- Auto Update Year Script -->
+  <script>
+    // Función para actualizar automáticamente el año
+    function updateYear() {
+      const months = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+      ];
+
+      const currentDate = new Date();
+      const currentMonth = months[currentDate.getMonth()];
+      const currentYear = currentDate.getFullYear();
+
+      // Actualizar el texto con el mes y año actual
+      const lastUpdatedElement = document.getElementById('lastUpdated');
+      if (lastUpdatedElement) {
+        lastUpdatedElement.textContent = currentMonth + ' ' + currentYear;
+      }
+    }
+
+    // Ejecutar inmediatamente cuando se carga el script
+    updateYear();
+
+    // También ejecutar cuando el DOM esté completamente cargado
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', updateYear);
+    }
+  </script>
 
 </body>
 

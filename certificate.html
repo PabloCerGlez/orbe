@@ -8,34 +8,225 @@
   <title>Orbe - Certificates</title>
       <!-- ... -->
       <style>
-        /* Asegúrate de que la tabla sea responsiva */
-        .portfolio-info {
-            overflow-x: auto; /* Permite el desplazamiento horizontal si la tabla es más ancha que el contenedor */
+        /* PDF Viewer Container */
+        .pdf-viewer-container {
+            background: #525659;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
         }
-        .portfolio-info table {
-            width: 100%; /* Ancho completo del contenedor */
-            min-width: 600px; /* Ancho mínimo de la tabla para mantener la visibilidad de las columnas */
-            border-collapse: collapse; /* Asegura que las celdas de la tabla estén juntas */
+
+        /* PDF Controls */
+        .pdf-controls {
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            border-bottom: 2px solid #F39200;
         }
-        .portfolio-info th, .portfolio-info td {
-            white-space: nowrap; /* Evita que el contenido de las celdas se ajuste a varias líneas */
+
+        .pdf-controls-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        /* Estilos para el botón de descarga */
-        .download-btn {
+
+        .pdf-btn {
+            background: rgba(243, 146, 0, 0.1);
+            border: 1px solid rgba(243, 146, 0, 0.3);
+            color: #F39200;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pdf-btn:hover {
             background: #F39200;
-            border: 0;
-            padding: 10px 24px;
             color: #fff;
-            transition: 0.4s;
-            border-radius: 4px;
+            border-color: #F39200;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(243, 146, 0, 0.4);
+        }
+
+        .pdf-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .pdf-btn i {
+            font-size: 16px;
+        }
+
+        .pdf-page-info {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+        }
+
+        .pdf-zoom-select {
+            background: rgba(243, 146, 0, 0.1);
+            border: 1px solid rgba(243, 146, 0, 0.3);
+            color: #F39200;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-zoom-select:hover {
+            background: rgba(243, 146, 0, 0.2);
+            border-color: #F39200;
+        }
+
+        /* PDF Canvas Container */
+        .pdf-canvas-container {
+            background: #525659;
+            padding: 30px;
+            overflow: auto;
+            max-height: 700px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        #pdf-canvas {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            background: #fff;
             display: block;
-            margin-top: 20px;
+            margin: 0 auto;
+        }
+
+        /* Loading State */
+        .pdf-loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #fff;
+        }
+
+        .pdf-loading .spinner {
+            border: 3px solid rgba(243, 146, 0, 0.2);
+            border-top: 3px solid #F39200;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            animation: spin 0.5s linear infinite;
+            margin: 0 auto 12px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #pdf-object {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            background: #fff;
+        }
+
+        /* Portfolio Info Styles */
+        .portfolio-info {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .portfolio-info h3 {
+            color: #F39200;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Action Buttons */
+        .action-btn {
+            background: linear-gradient(135deg, #F39200 0%, #ff6b00 100%);
+            border: 0;
+            padding: 14px 30px;
+            color: #fff;
+            transition: all 0.4s ease;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
             text-align: center;
             text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            box-shadow: 0 4px 15px rgba(243, 146, 0, 0.3);
         }
-        .download-btn:hover {
-            background: #ffaa33;
+
+        .action-btn:hover {
+            background: linear-gradient(135deg, #ff6b00 0%, #F39200 100%);
             color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(243, 146, 0, 0.5);
+        }
+
+        .action-btn i {
+            font-size: 18px;
+        }
+
+        /* Certificate Info */
+        .certificate-info {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 5px solid #F39200;
+        }
+
+        .certificate-info p {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .certificate-info strong {
+            color: #0f0f0f;
+            font-weight: 700;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .pdf-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .pdf-controls-group {
+                justify-content: center;
+            }
+
+            .pdf-canvas-container {
+                padding: 15px;
+                max-height: 500px;
+            }
+
+            .pdf-btn {
+                flex: 1;
+                justify-content: center;
+            }
         }
     </style>
   <meta content="" name="description">
@@ -132,30 +323,77 @@
           <div class="row gy-4">
   
             <div class="col-lg-8">
-              <div class="portfolio-details-slider swiper">
-                <div class="swiper-wrapper align-items-center">
-  
-                  <div class="swiper-slide">
-                    <!-- Cambiar la ruta a tu PDF -->
-                    <embed src="assets/pdf/Orbe_Engineering_AS_9100D_&_ISO_9001_Certificate_2024.pdf" type="application/pdf" width="100%" height="600px" />
+              <div class="pdf-viewer-container">
+                <!-- PDF Controls -->
+                <div class="pdf-controls">
+                  <div class="pdf-controls-group">
+                    <button class="pdf-btn" id="prev-page" title="Previous Page">
+                      <i class="bi bi-chevron-left"></i> Previous
+                    </button>
+                    <span class="pdf-page-info">
+                      Page <span id="page-num">1</span> / <span id="page-count">-</span>
+                    </span>
+                    <button class="pdf-btn" id="next-page" title="Next Page">
+                      Next <i class="bi bi-chevron-right"></i>
+                    </button>
                   </div>
-  
-              
-  
-           
+
+                  <div class="pdf-controls-group">
+                    <button class="pdf-btn" id="zoom-out" title="Zoom Out">
+                      <i class="bi bi-zoom-out"></i>
+                    </button>
+                    <select class="pdf-zoom-select" id="zoom-select">
+                      <option value="0.75">75%</option>
+                      <option value="1" selected>100%</option>
+                      <option value="1.25">125%</option>
+                      <option value="1.5">150%</option>
+                      <option value="2">200%</option>
+                    </select>
+                    <button class="pdf-btn" id="zoom-in" title="Zoom In">
+                      <i class="bi bi-zoom-in"></i>
+                    </button>
+                  </div>
+
+                  <div class="pdf-controls-group">
+                    <button class="pdf-btn" id="fullscreen-btn" title="Fullscreen">
+                      <i class="bi bi-fullscreen"></i>
+                    </button>
+                  </div>
                 </div>
-                <div class="swiper-pagination"></div>
+
+                <!-- PDF Canvas -->
+                <div class="pdf-canvas-container" id="canvas-container">
+                  <div class="pdf-loading" id="pdf-loading">
+                    <div class="spinner"></div>
+                    <p>Loading Certificate...</p>
+                  </div>
+                  <canvas id="pdf-canvas" style="display: none;"></canvas>
+                  <object id="pdf-object" data="assets/pdf/Orbe_Engineering_AS_9100D_&_ISO_9001_Certificate_2024.pdf" type="application/pdf" style="width: 100%; height: 600px; display: none;">
+                    <iframe id="pdf-fallback" src="assets/pdf/Orbe_Engineering_AS_9100D_&_ISO_9001_Certificate_2024.pdf" style="width: 100%; height: 600px; border: none;"></iframe>
+                  </object>
+                </div>
               </div>
             </div>
   
             <div class="col-lg-4">
               <div class="portfolio-info">
                 <h3>Certificates</h3>
-                
-              </div>
-              <div class="portfolio-description">
-                <!-- Botón de descarga del PDF -->
-                <a href="assets/pdf/Orbe_Engineering_AS_9100D_&_ISO_9001_Certificate_2024.pdf" download class="download-btn">Download Certificate</a>
+
+                <div class="certificate-info">
+                  <p><strong>Certificate Type:</strong> AS9100D & ISO 9001</p>
+                  <p><strong>Company:</strong> Orbe Engineering</p>
+                  <p><strong>Year:</strong> 2024</p>
+                  <p><strong>Status:</strong> <span style="color: #059652; font-weight: 700;">✓ Active</span></p>
+                </div>
+
+                <!-- Action Buttons -->
+                <a href="assets/pdf/Orbe_Engineering_AS_9100D_&_ISO_9001_Certificate_2024.pdf" download="Orbe_Engineering_Certificate_2024.pdf" class="action-btn">
+                  <i class="bi bi-download"></i> Download Certificate
+                </a>
+
+                <button onclick="printPDF()" class="action-btn" style="width: 100%; border: none; cursor: pointer;">
+                  <i class="bi bi-printer"></i> Print Certificate
+                </button>
               </div>
             </div>
   
@@ -265,6 +503,200 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <!-- PDF.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <!-- PDF Viewer Script -->
+  <script>
+    // PDF.js configuration
+    const pdfjsVersion = '3.11.174';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsVersion}/pdf.worker.min.js`;
+
+    // Get the PDF URL - use relative path from the HTML file location
+    const pdfUrl = 'assets/pdf/Orbe_Engineering_AS_9100D_&_ISO_9001_Certificate_2024.pdf';
+    let pdfDoc = null;
+    let pageNum = 1;
+    let pageRendering = false;
+    let pageNumPending = null;
+    let scale = 1.0;
+    let usingObject = false;
+
+    const canvas = document.getElementById('pdf-canvas');
+    const ctx = canvas ? canvas.getContext('2d') : null;
+    const canvasContainer = document.getElementById('canvas-container');
+    const loadingDiv = document.getElementById('pdf-loading');
+    const pdfObject = document.getElementById('pdf-object');
+
+    // Render the page
+    function renderPage(num) {
+      pageRendering = true;
+
+      pdfDoc.getPage(num).then(function(page) {
+        const viewport = page.getViewport({ scale: scale });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+
+        const renderTask = page.render(renderContext);
+
+        renderTask.promise.then(function() {
+          pageRendering = false;
+          if (pageNumPending !== null) {
+            renderPage(pageNumPending);
+            pageNumPending = null;
+          }
+        });
+      });
+
+      // Update page counters
+      document.getElementById('page-num').textContent = num;
+    }
+
+    // Queue rendering if another page is being rendered
+    function queueRenderPage(num) {
+      if (pageRendering) {
+        pageNumPending = num;
+      } else {
+        renderPage(num);
+      }
+    }
+
+    // Previous page
+    function onPrevPage() {
+      if (pageNum <= 1) {
+        return;
+      }
+      pageNum--;
+      queueRenderPage(pageNum);
+      updateButtons();
+    }
+
+    // Next page
+    function onNextPage() {
+      if (pageNum >= pdfDoc.numPages) {
+        return;
+      }
+      pageNum++;
+      queueRenderPage(pageNum);
+      updateButtons();
+    }
+
+    // Update button states
+    function updateButtons() {
+      document.getElementById('prev-page').disabled = pageNum <= 1;
+      document.getElementById('next-page').disabled = pageNum >= pdfDoc.numPages;
+    }
+
+    // Zoom in
+    function zoomIn() {
+      if (scale < 2.5) {
+        scale += 0.25;
+        document.getElementById('zoom-select').value = scale;
+        queueRenderPage(pageNum);
+      }
+    }
+
+    // Zoom out
+    function zoomOut() {
+      if (scale > 0.5) {
+        scale -= 0.25;
+        document.getElementById('zoom-select').value = scale;
+        queueRenderPage(pageNum);
+      }
+    }
+
+    // Zoom select
+    function onZoomChange(e) {
+      scale = parseFloat(e.target.value);
+      queueRenderPage(pageNum);
+    }
+
+    // Fullscreen
+    function toggleFullscreen() {
+      const container = canvasContainer;
+      if (!document.fullscreenElement) {
+        container.requestFullscreen().catch(err => {
+          console.log(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Print PDF function
+    function printPDF() {
+      window.open(pdfUrl, '_blank');
+    }
+
+    // Initialize PDF Viewer
+    function initPDFViewer() {
+      console.log('Initializing PDF viewer...');
+      console.log('PDF URL:', pdfUrl);
+
+      // Try PDF.js first
+      pdfjsLib.getDocument({
+        url: pdfUrl,
+        verbosity: 0
+      }).promise.then(function(pdfDoc_) {
+        console.log('PDF loaded successfully with PDF.js!');
+        pdfDoc = pdfDoc_;
+        usingObject = false;
+        document.getElementById('page-count').textContent = pdfDoc.numPages;
+
+        // Hide loading and object, show canvas
+        loadingDiv.style.display = 'none';
+        if (pdfObject) pdfObject.style.display = 'none';
+        if (canvas) canvas.style.display = 'block';
+
+        // Initial render
+        renderPage(pageNum);
+        updateButtons();
+      }).catch(function(error) {
+        console.warn('PDF.js failed, falling back to object/iframe:', error);
+
+        // Fallback to object/iframe
+        usingObject = true;
+        loadingDiv.style.display = 'none';
+        if (canvas) canvas.style.display = 'none';
+        if (pdfObject) {
+          pdfObject.style.display = 'block';
+          pdfObject.style.height = '600px';
+        }
+
+        // Hide controls that won't work with object
+        const controls = document.querySelector('.pdf-controls');
+        if (controls) {
+          controls.style.display = 'none';
+        }
+
+        document.getElementById('page-count').textContent = '1';
+      });
+    }
+
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM loaded, initializing PDF viewer');
+        setTimeout(initPDFViewer, 100); // Small delay to ensure all resources loaded
+      });
+    } else {
+      console.log('DOM already loaded, initializing PDF viewer immediately');
+      setTimeout(initPDFViewer, 100);
+    }
+
+    // Event listeners
+    document.getElementById('prev-page').addEventListener('click', onPrevPage);
+    document.getElementById('next-page').addEventListener('click', onNextPage);
+    document.getElementById('zoom-in').addEventListener('click', zoomIn);
+    document.getElementById('zoom-out').addEventListener('click', zoomOut);
+    document.getElementById('zoom-select').addEventListener('change', onZoomChange);
+    document.getElementById('fullscreen-btn').addEventListener('click', toggleFullscreen);
+  </script>
 
 </body>
 

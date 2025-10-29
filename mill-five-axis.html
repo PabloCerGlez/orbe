@@ -8,17 +8,315 @@
   <title>Orbe - Mill 5 axis</title>
       <!-- ... -->
       <style>
-        /* Asegúrate de que la tabla sea responsiva */
+        /* Modern Capability Page Design */
+        .capability-hero {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .capability-hero:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .capability-hero img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+        }
+
+        /* Info Card Styling */
         .portfolio-info {
-            overflow-x: auto; /* Permite el desplazamiento horizontal si la tabla es más ancha que el contenedor */
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
         }
-        .portfolio-info table {
-            width: 100%; /* Ancho completo del contenedor */
-            min-width: 600px; /* Ancho mínimo de la tabla para mantener la visibilidad de las columnas */
-            border-collapse: collapse; /* Asegura que las celdas de la tabla estén juntas */
+
+        .portfolio-info h3 {
+            color: #F39200;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 3px solid #F39200;
+            padding-bottom: 15px;
         }
-        .portfolio-info th, .portfolio-info td {
-            white-space: nowrap; /* Evita que el contenido de las celdas se ajuste a varias líneas */
+
+        .capability-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 5px solid #F39200;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .capability-section:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(243, 146, 0, 0.2);
+        }
+
+        .capability-section h4 {
+            color: #0f0f0f;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .capability-section h4 i {
+            color: #F39200;
+            font-size: 24px;
+        }
+
+        .capability-section p {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .capability-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .capability-section ul li {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .capability-section ul li::before {
+            content: "✓";
+            color: #F39200;
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+            font-size: 18px;
+        }
+
+        /* Specifications Table */
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .specs-table thead {
+            background: linear-gradient(135deg, #F39200 0%, #ff6b00 100%);
+            color: #fff;
+        }
+
+        .specs-table thead th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .specs-table tbody tr {
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.3s ease;
+        }
+
+        .specs-table tbody tr:hover {
+            background: #fff8f0;
+        }
+
+        .specs-table tbody td {
+            padding: 15px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .specs-table tbody td:first-child {
+            font-weight: 600;
+            color: #0f0f0f;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            background: linear-gradient(135deg, #F39200 0%, #ff6b00 100%);
+            border: 0;
+            padding: 16px 35px;
+            color: #fff;
+            transition: all 0.4s ease;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 6px 20px rgba(243, 146, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #ff6b00 0%, #F39200 100%);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(243, 146, 0, 0.5);
+        }
+
+        .cta-button i {
+            font-size: 20px;
+        }
+
+        /* Description Section */
+        .portfolio-description {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-description h4 {
+            color: #0f0f0f;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-description p {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 15px;
+        }
+
+        /* Feature Highlights */
+        .feature-badge {
+            display: inline-block;
+            background: rgba(243, 146, 0, 0.1);
+            color: #F39200;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 5px 5px 5px 0;
+            border: 2px solid rgba(243, 146, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .feature-badge:hover {
+            background: #F39200;
+            color: #fff;
+            border-color: #F39200;
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .capability-hero {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-info {
+                padding: 25px;
+            }
+
+            .portfolio-info h3 {
+                font-size: 24px;
+            }
+
+            .capability-section {
+                padding: 20px;
+                transform: none;
+            }
+
+            .capability-section:hover {
+                transform: none;
+            }
+
+            .capability-section h4 {
+                font-size: 18px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .capability-section p,
+            .capability-section ul li {
+                font-size: 14px;
+            }
+
+            .cta-button {
+                width: 100%;
+                padding: 14px 25px;
+                font-size: 14px;
+            }
+
+            .portfolio-description {
+                padding: 25px;
+            }
+
+            .portfolio-description h4 {
+                font-size: 20px;
+            }
+
+            .portfolio-description p {
+                font-size: 14px;
+            }
+
+            .specs-table {
+                font-size: 12px;
+            }
+
+            .specs-table thead th,
+            .specs-table tbody td {
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .portfolio-info {
+                padding: 20px;
+            }
+
+            .portfolio-info h3 {
+                font-size: 20px;
+            }
+
+            .capability-section {
+                padding: 15px;
+            }
+
+            .capability-section h4 {
+                font-size: 16px;
+            }
+
+            .feature-badge {
+                font-size: 12px;
+                padding: 6px 14px;
+            }
         }
     </style>
   <meta content="" name="description">
@@ -122,28 +420,23 @@
           <div class="row gy-4">
   
             <div class="col-lg-8">
-              <div class="portfolio-details-slider swiper">
-                <div class="swiper-wrapper align-items-center">
-  
-                  <div class="swiper-slide">
-                    <img src="assets/img/hero13.jpeg" alt="">
-                  </div>
-  
-              
-  
-           
-                </div>
-                <div class="swiper-pagination"></div>
+              <div class="capability-hero">
+                <img src="assets/img/hero13.jpeg" alt="5-Axis CNC Milling Machine">
               </div>
             </div>
-  
+
             <div class="col-lg-4">
               <div class="portfolio-info">
-                <h3>Mill 5 axis</h3>
-                
-              </div>
-              <div class="portfolio-description">
-              
+                <h3>Mill 5 Axis</h3>
+
+                <div class="capability-section">
+                  <h4><i class="bi bi-info-circle-fill"></i> Mill 5 Axis Capability</h4>
+                  <p>Contact us for detailed information about our 5-axis milling capabilities and specifications.</p>
+                </div>
+
+                <a href="contact.html" class="cta-button">
+                  <i class="bi bi-envelope-fill"></i> Contact Us
+                </a>
               </div>
             </div>
   
